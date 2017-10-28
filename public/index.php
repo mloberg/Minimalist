@@ -16,17 +16,16 @@ call_user_func(function () {
     /** @var ContainerInterface $container */
     $container = require __DIR__.'/../config/container.php';
     $routes = require __DIR__.'/../config/routes.php';
+    $middleware = require __DIR__.'/../config/middleware.php';
 
-    $middleware = [
-        new Whoops(),
-        new FastRoute($routes),
-        new RequestHandler(new ContainerResolver($container)),
-    ];
+    // Add our routing and response middleware
+    $middleware[] = new FastRoute($routes);
+    $middleware[] = new RequestHandler(new ContainerResolver($container));
 
-    $collection = new MiddlewareCollection($middleware);
+    $dispatcher = new MiddlewareCollection($middleware);
 
     $request = ServerRequestFactory::fromGlobals();
-    $response = $collection->dispatch($request, function () {
+    $response = $dispatcher->dispatch($request, function () {
         // We never expect this to happen, but just in case
         return Factory::createResponse(404);
     });
