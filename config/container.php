@@ -1,14 +1,12 @@
 <?php
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 $container = new ContainerBuilder();
-
-$container->register(\App\Greeter::class);
-$container
-    ->register(\App\Action\HomepageAction::class)
-    ->addArgument(new Reference(\App\Greeter::class));
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__));
+$loader->load('services.yaml');
 
 $container->compile();
 
