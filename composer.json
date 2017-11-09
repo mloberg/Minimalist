@@ -12,6 +12,7 @@
         "php": "^7.0",
         "equip/dispatch": "^0.5.0",
         "http-interop/http-middleware": "^0.5.0",
+        "illuminate/support": "^5.5",
         "middlewares/fast-route": "^0.8.0",
         "middlewares/request-handler": "^0.3.0",
         "middlewares/utils": "^0.12.0",

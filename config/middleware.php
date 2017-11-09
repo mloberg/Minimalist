@@ -1,7 +1,7 @@
 <?php
 
-use Middlewares\Whoops;
+$middleware = [];
 
-return [
-    new Whoops(),
-];
+$middleware[] = new Middlewares\Whoops();
+
+return $middleware;
