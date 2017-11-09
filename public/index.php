@@ -5,12 +5,17 @@ use Middlewares\FastRoute;
 use Middlewares\RequestHandler;
 use Middlewares\Utils\CallableResolver\ContainerResolver;
 use Middlewares\Utils\Factory;
-use Middlewares\Whoops;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Dotenv\Dotenv;
 use Zend\Diactoros\Response\SapiStreamEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+try {
+    (new Dotenv())->load(__DIR__.'/../.env');
+} catch (\Exception $e) {
+}
 
 call_user_func(function () {
     /** @var ContainerInterface $container */
