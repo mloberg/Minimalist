@@ -26,4 +26,5 @@ if (!$containerConfigCache->isFresh()) {
 }
 
 require_once $file;
+
 return new ProjectServiceContainer();

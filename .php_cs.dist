@@ -1,0 +1,624 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->exclude('var');
+
+$rules = [
+    '@PSR2' => true,
+
+    'array_syntax' => ['syntax' => 'short'],
+    // PHP arrays should be declared using the configured syntax (requires PHP >= 5.4 for short syntax).
+    // Rule is configurable with ['syntax' => 'short|long'].
+    // Default configuration is ['syntax' => 'long'].
+
+    'binary_operator_spaces' => ['align_double_arrow' => false, 'align_equals' => false],
+    // [@Symfony] Binary operators should be surrounded by at least one space.
+    // Rule is configurable with ['align_equals' => true|false, 'align_double_arrow' => true|false].
+    // Default configuration is ['align_equals' => false, 'align_double_arrow' => false].
+
+    'blank_line_after_namespace' => true,
+    // [@PSR2, @Symfony] There MUST be one blank line after the namespace declaration.
+    // Rule is configurable with true|false.
+
+    'blank_line_after_opening_tag' => true,
+    // [@Symfony] Ensure there is no code on the same line as the PHP open tag and it is followed by a blank line.
+    // Rule is configurable with true|false.
+
+    'blank_line_before_return' => true,
+    // [@Symfony] An empty line feed should precede a return statement.
+    // Rule is configurable with true|false.
+
+    'braces' => true,
+    // [@PSR2, @Symfony] The body of each structure MUST be enclosed by braces. Braces should be properly placed.
+    // Body of braces should be properly indented.
+    // Rule is configurable with true|false.
+
+    'cast_spaces' => true,
+    // [@Symfony] A single space should be between cast and variable.
+    // Rule is configurable with true|false.
+
+    'class_definition' => ['singleLine' => false, 'singleItemSingleLine' => false, 'multiLineExtendsEachSingleLine' => false],
+    // [@PSR2, @Symfony] Whitespace around the keywords of a class, trait or interfaces definition should be one space.
+    // Rule is configurable with: ['singleLine' => true|false, 'singleItemSingleLine' => true|false, 'multiLineExtendsEachSingleLine' => true|false].
+    // Default configuration is ['singleLine' => false, 'singleItemSingleLine' => false, 'multiLineExtendsEachSingleLine' => false].
+
+    //'class_keyword_remove' => null,
+    // Converts ::class keywords to FQCN strings. Requires PHP >= 5.5.
+    // Rule is configurable with true|false.
+
+    'combine_consecutive_unsets' => true,
+    // Calling unset on multiple items should be done in one call.
+    // Rule is configurable with true|false.
+
+    'concat_space' => ['spacing' => 'none'],
+    // [@Symfony] Concatenation should be spaced according configuration.
+    // Rule is configurable with ['spacing' => none|one].
+    // Default configuration is ['spacing' => none].
+
+    'declare_equal_normalize' => true,
+    // [@Symfony] Equal sign in declare statement should not be surrounded by spaces.
+    // Rule is configurable with true|false.
+
+    //'declare_strict_types' => null,
+    // Force strict types declaration in all files. Requires PHP >= 7.0.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'dir_constant' => null,
+    // Replaces dirname(__FILE__) expression with equivalent __DIR__ constant.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'elseif' => true,
+    // [@PSR2, @Symfony] The keyword elseif should be used instead of else if so that all control keywords look
+    // like single words.
+    // Rule is configurable with true|false.
+
+    'encoding' => true,
+    // [@PSR1, @PSR2, @Symfony] PHP code MUST use only UTF-8 without BOM (remove BOM).
+    // Rule is configurable with true|false.
+
+    //'ereg_to_preg' => null,
+    // Replace deprecated ereg regular expression functions with preg.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'full_opening_tag' => true,
+    // [@PSR1, @PSR2, @Symfony] PHP code must use the long tags or the short-echo tags; it must not use the other tag
+    // variations.
+    // Rule is configurable with true|false.
+
+    'function_declaration' => true,
+    // [@PSR2, @Symfony] Spaces should be properly placed in a function declaration.
+    // Rule is configurable with true|false.
+
+    'function_typehint_space' => true,
+    // [@Symfony] Add missing space between function's argument and its typehint.
+    // Rule is configurable with true|false.
+
+    //'general_phpdoc_annotation_remove' => null,
+    // Configured annotations should be omitted from phpdocs.
+    // Rule is configurable with an array of annotation types.
+
+    'hash_to_slash_comment' => true,
+    // [@Symfony] Single line comments should use double slashes (//) and not hash (#).
+    // Rule is configurable with true|false.
+
+    //'header_comment' => null,
+    // [contrib] Add, replace or remove header comment.
+    // Rule is configurable with ['commentType' => 'PHPDoc|comment', 'location' => 'after_open|after_declare_strict', 'separate' => 'top|bottom|none|both'].
+
+    'heredoc_to_nowdoc' => true,
+    // Convert heredoc to nowdoc where possible.
+    // Rule is configurable with true|false.
+
+    'include' => true,
+    // [@Symfony] Include/Require and file path should be divided with a single space. File path should not be placed
+    // under brackets.
+    // Rule is configurable with true|false.
+
+    'indentation_type' => true,
+    // [@PSR2, @Symfony] Code MUST use configured indentation type.
+    // Rule is configurable with true|false.
+
+    //'is_null' => null,
+    // [@Symfony] Replaces is_null(parameter) expression with null === parameter.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'line_ending' => true,
+    // [@PSR2, @Symfony] All PHP files must use same line ending.
+    // Rule is configurable with true|false.
+
+    'linebreak_after_opening_tag' => true,
+    // Ensure there is no code on the same line as the PHP open tag.
+    // Rule is configurable with true|false.
+
+    'lowercase_cast' => true,
+    // [@Symfony] Cast should be written in lower case.
+    // Rule is configurable with true|false.
+
+    'lowercase_constants' => true,
+    // [@PSR2, @Symfony] The PHP constants true, false, and null MUST be in lower case.
+    // Rule is configurable with true|false.
+
+    'lowercase_keywords' => true,
+    // [@PSR2, @Symfony] PHP keywords MUST be in lower case.
+    // Rule is configurable with true|false.
+
+    //'mb_str_functions' => null,
+    // Replace non multibyte-safe functions with corresponding mb function.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'method_argument_space' => true,
+    // [@PSR2, @Symfony] In method arguments and method call, there MUST NOT be a space before each comma and there
+    // MUST be one space after each comma.
+    // Rule is configurable with true|false.
+
+    //'method_separation' => null,
+    // [@Symfony] Methods must be separated with one blank line.
+    // Rule is configurable with true|false.
+
+    //'modernize_types_casting' => null,
+    // Replaces intval, floatval, doubleval, strval and boolval function calls with according type casting operator.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'native_function_casing' => true,
+    // [@Symfony] Function defined by PHP should be called using the correct casing.
+    // Rule is configurable with true|false.
+
+    'new_with_braces' => true,
+    // [@Symfony] All instances created with new keyword must be followed by braces.
+    // Rule is configurable with true|false.
+
+    'no_alias_functions' => true,
+    // [@Symfony] Master functions shall be used instead of aliases.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'no_blank_lines_after_class_opening' => true,
+    // [@Symfony] There should be no empty lines after class opening brace.
+    // Rule is configurable with true|false.
+
+    'no_blank_lines_after_phpdoc' => true,
+    // [@Symfony] There should not be blank lines between docblock and the documented element.
+    // Rule is configurable with true|false.
+
+    //'no_blank_lines_before_namespace' => null,
+    // There should be no blank lines before a namespace declaration.
+    // Rule is configurable with true|false.
+
+    'no_closing_tag' => true,
+    // [@PSR2, @Symfony] The closing php tag MUST be omitted from files containing only PHP.
+    // Rule is configurable with true|false.
+
+    'no_empty_comment' => true,
+    // [@Symfony] There should not be any empty comments.
+    // Rule is configurable with true|false.
+
+    'no_empty_phpdoc' => true,
+    // [@Symfony] There should not be empty PHPDoc blocks.
+    // Rule is configurable with true|false.
+
+    'no_empty_statement' => true,
+    // [@Symfony] Remove useless semicolon statements.
+    // Rule is configurable with true|false.
+
+    'no_extra_consecutive_blank_lines' => ['extra', 'use'],
+    // [@Symfony] Removes extra blank lines and/or blank lines following configuration.
+    // Rule is configurable with ['break', 'continue', 'extra', 'return', 'throw', 'use', 'useTrait', 'curly_brace_block', 'parenthesis_brace_block', 'square_brace_block'].
+    // Default configuration is ['extra'].
+
+    'no_leading_import_slash' => true,
+    // [@Symfony] Remove leading slashes in use clauses.
+    // Rule is configurable with true|false.
+
+    'no_leading_namespace_whitespace' => true,
+    // [@Symfony] The namespace declaration line shouldn't contain leading whitespace.
+    // Rule is configurable with true|false.
+
+    //'no_mixed_echo_print' => null,
+    // [@Symfony] Either language construct print or echo should be used.
+    // Rule is configurable with ['use' => 'echo|print'].
+    // Default configuration is ['use' => 'echo'].
+
+    'no_multiline_whitespace_around_double_arrow' => true,
+    // [@Symfony] Operator => should not be surrounded by multi-line whitespaces.
+    // Rule is configurable with true|false.
+
+    'no_multiline_whitespace_before_semicolons' => true,
+    // Multi-line whitespace before closing semicolon are prohibited.
+    // Rule is configurable with true|false.
+
+    //'no_php4_constructor' => null,
+    // Convert PHP4-style constructors to __construct.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'no_short_bool_cast' => true,
+    // [@Symfony] Short cast bool using double exclamation mark should not be used.
+    // Rule is configurable with true|false.
+
+    'no_short_echo_tag' => true,
+    // Replace short-echo <?= with long format <?php echo syntax.
+    // Rule is configurable with true|false.
+
+    'no_singleline_whitespace_before_semicolons' => true,
+    // [@Symfony] Single-line whitespace before closing semicolon are prohibited.
+    // Rule is configurable with true|false.
+
+    'no_spaces_after_function_name' => true,
+    // [@PSR2, @Symfony] When making a method or function call, there MUST NOT be a space between the method or
+    // function name and the opening parenthesis.
+    // Rule is configurable with true|false.
+
+    //'no_spaces_around_offset' => null,
+    // [@Symfony] There MUST NOT be spaces around offset braces.
+    // Rule is configurable with ['inside', 'outside'].
+    // Default configuration is ['inside', 'outside'].
+
+    'no_spaces_inside_parenthesis' => true,
+    // [@PSR2, @Symfony] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the
+    // closing parenthesis.
+    // Rule is configurable with true|false.
+
+    'no_trailing_comma_in_list_call' => true,
+    // [@Symfony] Remove trailing commas in list function calls.
+    // Rule is configurable with true|false.
+
+    'no_trailing_comma_in_singleline_array' => true,
+    // [@Symfony] PHP single-line arrays should not have trailing comma.
+    // Rule is configurable with true|false.
+
+    'no_trailing_whitespace' => true,
+    // [@PSR2, @Symfony] Remove trailing whitespace at the end of non-blank lines.
+    // Rule is configurable with true|false.
+
+    'no_trailing_whitespace_in_comment' => true,
+    // [@PSR2, @Symfony] There MUST be no trailing spaces inside comments and phpdocs.
+    // Rule is configurable with true|false.
+
+    'no_unneeded_control_parentheses' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'],
+    // [@Symfony] Removes unneeded parentheses around control statements.
+    // Rule is configurable with ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'].
+    // Default configuration is ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'].
+
+    'no_unreachable_default_argument_value' => true,
+    // [@Symfony] In method arguments there must not be arguments with default values before non-default ones.
+    // Rule is configurable with true|false.
+
+    'no_unused_imports' => true,
+    // [@Symfony] Unused use statements must be removed.
+    // Rule is configurable with true|false.
+
+    'no_useless_else' => true,
+    // There should not be useless else cases.
+    // Rule is configurable with true|false.
+
+    'no_useless_return' => true,
+    // There should not be an empty return statement at the end of a function.
+    // Rule is configurable with true|false.
+
+    'no_whitespace_before_comma_in_array' => true,
+    // [@Symfony] In array declaration, there MUST NOT be a whitespace before each comma.
+    // Rule is configurable with true|false.
+
+    'no_whitespace_in_blank_line' => true,
+    // [@Symfony] Remove trailing whitespace at the end of blank lines.
+    // Rule is configurable with true|false.
+
+    //'normalize_index_brace' => null,
+    // [@Symfony] Array index should always be written by using square braces.
+    // Rule is configurable with true|false.
+
+    //'not_operator_with_space' => null,
+    // Logical NOT operators (!) should have leading and trailing whitespaces.
+    // Rule is configurable with true|false.
+
+    //'not_operator_with_successor_space' => null,
+    // Logical NOT operators (!) should have one trailing whitespace.
+    // Rule is configurable with true|false.
+
+    'object_operator_without_whitespace' => true,
+    // [@Symfony] There should not be space before or after object T_OBJECT_OPERATOR.
+    // Rule is configurable with true|false.
+
+    'ordered_class_elements' => [
+        'use_trait',
+        'constant_public',
+        'constant_protected',
+        'constant_private',
+        'property_public_static',
+        'property_protected_static',
+        'property_private_static',
+        'property_public',
+        'property_protected',
+        'property_private',
+        'construct',
+        'destruct',
+        'method_public_static',
+        'method_protected_static',
+        'method_private_static',
+        'magic',
+        'phpunit',
+        'method_public',
+        'method_protected',
+        'method_private',
+    ],
+    // Orders the elements of classes/interfaces/traits.
+    // Rule is configurable with ['use_trait', 'constant_public', 'constant_protected', 'constant_private', 'property_public', 'property_protected', 'property_private', 'construct', 'destruct', 'magic', 'phpunit', 'method_public', 'method_protected', 'method_private'].
+    // Default configuration is ['use_trait', 'constant_public', 'constant_protected', 'constant_private', 'property_public', 'property_protected', 'property_private', 'construct', 'destruct', 'magic', 'phpunit', 'method_public', 'method_protected', 'method_private'].
+
+    'ordered_imports' => true,
+    // [contrib] Ordering use statements.
+    // Rule is configurable with true|false.
+
+    //'php_unit_construct' => null,
+    // [@Symfony] PHPUnit assertion method calls like "->assertSame(true, $foo)" should be written with dedicated method
+    // like "->assertTrue($foo)".
+    // Rule is configurable with ['assertSame', 'assertEquals', 'assertNotEquals', 'assertNotSame'].
+    // Default configuration is ['assertSame', 'assertEquals', 'assertNotEquals', 'assertNotSame'].
+    // Rule is risky.
+
+    //'php_unit_dedicate_assert' => null,
+    // [@Symfony] PHPUnit assertions like "assertInternalType", "assertFileExists", should be used over "assertTrue".
+    // Rule is configurable with ['array_key_exists', 'empty', 'file_exists', 'is_infinite', 'is_nan', 'is_null', 'is_array', 'is_bool', 'is_boolean', 'is_callable', 'is_double', 'is_float', 'is_int', 'is_integer', 'is_long', 'is_​numeric', 'is_object', 'is_real', 'is_​resource', 'is_scalar', 'is_string'].
+    // Default configuration is ['array_key_exists', 'empty', 'file_exists', 'is_infinite', 'is_nan', 'is_null', 'is_array', 'is_bool', 'is_boolean', 'is_callable', 'is_double', 'is_float', 'is_int', 'is_integer', 'is_long', 'is_​numeric', 'is_object', 'is_real', 'is_​resource', 'is_scalar', 'is_string'].
+    // Rule is risky.
+
+    //'php_unit_fqcn_annotation' => null,
+    // [@Symfony] PHPUnit annotations should be a FQCNs including a root namespace.
+    // Rule is configurable with true|false.
+
+    //'php_unit_strict' => null,
+    // PHPUnit methods like assertSame should be used instead of assertEquals.
+    // Rule is configurable with ['assertAttributeEquals', 'assertAttributeNotEquals', 'assertEquals', 'assertNotEquals'].
+    // Default configuration is ['assertAttributeEquals', 'assertAttributeNotEquals', 'assertEquals', 'assertNotEquals'].
+    // Rule is risky.
+
+    //'phpdoc_add_missing_param_annotation' => null,
+    // Phpdoc should contain @param for all params.
+    // Rule is configurable with ['only_untyped' => true|false].
+    // Default configuration is  ['only_untyped' => true].
+
+    'phpdoc_align' => true,
+    // [@Symfony] All items of the @param, @throws, @return, @var, and @type phpdoc tags must be aligned vertically.
+    // Rule is configurable with true|false.
+
+    //'phpdoc_annotation_without_dot' => null,
+    // Phpdocs annotation descriptions should not be a sentence.
+    // Rule is configurable with true|false.
+
+    'phpdoc_indent' => true,
+    // [@Symfony] Docblocks should have the same indentation as the documented subject.
+    // Rule is configurable with true|false.
+
+    'phpdoc_inline_tag' => true,
+    // [@Symfony] Fix phpdoc inline tags, make inheritdoc always inline.
+    // Rule is configurable with true|false.
+
+    'phpdoc_no_access' => true,
+    // [@Symfony] @access annotations should be omitted from phpdocs.
+    // Rule is configurable with true|false.
+
+    'phpdoc_no_alias_tag' => ['property-read' => 'property', 'property-write' => 'property', 'type' => 'var', 'link' => 'see'],
+    // [@Symfony] No alias PHPDoc tags should be used.
+    // Rule is configurable with a key value pair where the key is the alias and the value is the tag that should be used.
+    // Default configuration is ['property-read' => 'property', 'property-write' => 'property', 'type' => 'var', 'link' => 'see'].
+
+    'phpdoc_no_empty_return' => true,
+    // [@Symfony] @return void and @return null annotations should be omitted from phpdocs.
+    // Rule is configurable with true|false.
+
+    'phpdoc_no_package' => true,
+    // [@Symfony] @package and @subpackage annotations should be omitted from phpdocs.
+    // Rule is configurable with true|false.
+
+    //'phpdoc_no_useless_inheritdoc' => null,
+    // [@Symfony] Class that does not inherit must not have inheritdoc tags.
+    // Rule is configurable with true|false.
+
+    'phpdoc_order' => true,
+    // Annotations in phpdocs should be ordered so that param annotations come first, then throws annotations, then
+    // return annotations.
+    // Rule is configurable with true|false.
+
+    //'phpdoc_return_self_reference' => null,
+    // [@Symfony] The type of @return annotations of methods returning a reference to itself must the configured one.
+    // Rule is configurable with a key value pair where the key is the return type to look for and the value is the
+    // return type that should be used.
+    // Default configuration is ['this' => '$this', '@this' => '$this', '$self' => 'self', '@self' => 'self', '$static' => 'static', '@static' => 'static'].
+
+    'phpdoc_scalar' => true,
+    // [@Symfony] Scalar types should always be written in the same form. "int",
+    // not "integer"; "bool", not "boolean"; "float", not "real" or "double".
+    // Rule is configurable with true|false.
+
+    'phpdoc_separation' => true,
+    // [@Symfony] Annotations in phpdocs should be grouped together so that annotations of the same type immediately
+    // follow each other, and annotations of a different type are separated by a single blank line.
+    // Rule is configurable with true|false.
+
+    'phpdoc_single_line_var_spacing' => true,
+    // [@Symfony] Single line @var PHPDoc should have proper spacing.
+    // Rule is configurable with true|false.
+
+    //'phpdoc_summary' => null,
+    // [@Symfony] Phpdocs summary should end in either a full stop, exclamation mark, or question mark.
+    // Rule is configurable with true|false.
+
+    'phpdoc_to_comment' => true,
+    // [@Symfony] Docblocks should only be used on structural elements.
+    // Rule is configurable with true|false.
+
+    'phpdoc_trim' => true,
+    // [@Symfony] Phpdocs should start and end with content, excluding the very first and last line of the docblocks.
+    // Rule is configurable with true|false.
+
+    'phpdoc_types' => true,
+    // [@Symfony] The correct case must be used for standard PHP types in phpdoc.
+    // Rule is configurable with true|false.
+
+    'phpdoc_var_without_name' => true,
+    // [@Symfony] @var and @type annotations should not contain the variable name.
+    // Rule is configurable with true|false.
+
+    //'pow_to_exponentiation' => null,
+    // [@PHP56Migration, @PHP70Migration, @PHP71Migration] Converts pow() to the ** operator. Requires PHP >= 5.6.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'pre_increment' => null,
+    // [@Symfony] Pre incrementation/decrementation should be used if possible.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'protected_to_private' => null,
+    // Converts "protected" variables and methods to "private" where possible.
+    // Rule is configurable with true|false.
+
+    //'psr0' => null,
+    // Classes must be in a path that matches their namespace, be at least one namespace deep and the class name should
+    // match the file name.
+    // Rule is configurable with ['dir' => '/your/path/here'].
+    // Rule is risky.
+
+    //'psr4' => null,
+    // Class names should match the file name.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'random_api_migration' => null,
+    // [@PHP70Migration, @PHP71Migration] Replaces "rand", "mt_rand", "srand", "getrandmax" functions calls with their
+    // "mt_*" analogs.
+    // Rule is configurable with ['[function]' => ['alternativeName' => '[replacementFunction]', 'argumentCount' => [[number of arguments]]]].
+    // Default configuration is:
+    //  [
+    //    'getrandmax' => ['alternativeName' => 'mt_getrandmax', 'argumentCount' => [0]],
+    //    'mt_rand' => ['alternativeName' => 'mt_rand', 'argumentCount' => [1, 2]],
+    //    'rand' => ['alternativeName' => 'mt_rand', 'argumentCount' => [0, 2]],
+    //    'srand' => ['alternativeName' => 'mt_srand', 'argumentCount' => [0, 1]],
+    //  ].
+    // Rule is risky.
+
+    //'return_type_declaration' => null,
+    // [@Symfony] There should be one or no space before colon, and one space after it in return type declarations,
+    // according to configuration.
+    // Rule is configurable with ['space_before' => 'one|none'].
+    // Default configuration is ['space_before' => 'none'].
+
+    'self_accessor' => true,
+    // [@Symfony] Inside a classy element "self" should be preferred to the class name itself.
+    // Rule is configurable with true|false.
+
+    //'semicolon_after_instruction' => null,
+    // Instructions must be terminated with a semicolon.
+    // Rule is configurable with true|false.
+
+    'short_scalar_cast' => true,
+    // [@Symfony] Cast "(boolean)" and "(integer)" should be written as "(bool)"
+    // and "(int)". "(double)" and "(real)" as "(float)".
+    // Rule is configurable with true|false.
+
+    'silenced_deprecation_error' => true,
+    // [@Symfony] Ensures deprecation notices are silenced.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'simplified_null_return' => null,
+    // A return statement wishing to return "void" should not return "null".
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'single_blank_line_at_eof' => true,
+    // [@PSR2, @Symfony] A PHP file without end tag must always end with a single empty line feed.
+    // Rule is configurable with true|false.
+
+    'single_blank_line_before_namespace' => true,
+    // [@Symfony] There should be exactly one blank line before a namespace declaration.
+    // Rule is configurable with true|false.
+
+    //'single_class_element_per_statement' => null,
+    // [@PSR2, @Symfony] There MUST NOT be more than one property or constant declared per statement.
+    // Rule is configurable with an array of class elements.
+    // Default configuration is ['property', 'const'].
+
+    'single_import_per_statement' => true,
+    // [@PSR2, @Symfony] There MUST be one use keyword per declaration.
+    // Rule is configurable with true|false.
+
+    'single_line_after_imports' => true,
+    // [@PSR2, @Symfony] Each namespace use MUST go on its own line and there MUST be one blank line after the use
+    // statements block.
+    // Rule is configurable with true|false.
+
+    'single_quote' => true,
+    // [@Symfony] Convert double quotes to single quotes for simple strings.
+    // Rule is configurable with true|false.
+
+    'space_after_semicolon' => true,
+    // [@Symfony] Fix whitespace after a semicolon.
+    // Rule is configurable with true|false.
+
+    'standardize_not_equals' => true,
+    // [@Symfony] Replace all <> with !=.
+    // Rule is configurable with true|false.
+
+    //'strict_comparison' => null,
+    // Comparisons should be strict.
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    //'strict_param' => null,
+    // Functions should be used with "$strict" param set to "true".
+    // Rule is configurable with true|false.
+    // Rule is risky.
+
+    'switch_case_semicolon_to_colon' => true,
+    // [@PSR2, @Symfony] A case should be followed by a colon and not a semicolon.
+    // Rule is configurable with true|false.
+
+    'switch_case_space' => true,
+    // [@PSR2, @Symfony] Removes extra spaces between colon and case value.
+    // Rule is configurable with true|false.
+
+    'ternary_operator_spaces' => true,
+    // [@Symfony] Standardize spaces around ternary operator.
+    // Rule is configurable with true|false.
+
+    //'ternary_to_null_coalescing' => null,
+    // Use "null" coalescing operator "??" where possible.
+    // Rule is configurable with true|false.
+
+    'trailing_comma_in_multiline_array' => true,
+    // [@Symfony] PHP multi-line arrays should have a trailing comma.
+    // Rule is configurable with true|false.
+
+    'trim_array_spaces' => true,
+    // [@Symfony] Arrays should be formatted like function/method arguments, without leading or trailing single line space.
+    // Rule is configurable with true|false.
+
+    'unary_operator_spaces' => true,
+    // [@Symfony] Unary operators should be placed adjacent to their operands.
+    // Rule is configurable with true|false.
+
+    'visibility_required' => null,
+    // [@PSR2, @Symfony, @PHP71Migration] Visibility MUST be declared on all properties and methods; abstract and final
+    // MUST be declared before the visibility; static MUST be declared after the visibility.
+    // Rule is configurable with ['property', 'method', 'const'].
+    // Default configuration is ['property', 'method'].
+
+    'whitespace_after_comma_in_array' => true,
+    // [@Symfony] In array declaration, there MUST be a whitespace after each comma.
+    // Rule is configurable with true|false.
+];
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules($rules)
+    ->setFinder($finder)
+    ->setCacheFile(__DIR__.'/var/.php_cs.cache')
+;

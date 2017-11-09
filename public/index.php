@@ -10,7 +10,7 @@ use Symfony\Component\Dotenv\Dotenv;
 use Zend\Diactoros\Response\SapiStreamEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 try {
     (new Dotenv())->load(__DIR__.'/../.env');
